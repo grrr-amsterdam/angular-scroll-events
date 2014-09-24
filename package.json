@@ -1,0 +1,34 @@
+{
+  "name": "angular-scroll-events",
+  "version": "0.1.0",
+  "description": "A collection of Angular directives responding to scroll events.",
+  "main": "angular-scroll-events.min.js",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {
+    "gulp": "~3.8.8",
+    "gulp-concat": "~2.4.1",
+    "gulp-ng-annotate": "~0.3.3",
+    "gulp-uglify": "~1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grrr-Amsterdam/angular-scroll-events.git"
+  },
+  "keywords": [
+    "javascript",
+    "angular",
+    "scroll"
+  ],
+  "author": "Grrr Amsterdam (grrr.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Grrr-Amsterdam/angular-scroll-events/issues"
+  },
+  "homepage": "https://github.com/Grrr-Amsterdam/angular-scroll-events"
+}
