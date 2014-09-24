@@ -2,7 +2,7 @@
   "name": "angular-scroll-events",
   "version": "0.1.0",
   "description": "A collection of Angular directives responding to scroll events.",
-  "main": "angular-scroll-events.min.js",
+  "main": "dist/angular-scroll-events.min.js",
   "directories": {
     "example": "example"
   },
