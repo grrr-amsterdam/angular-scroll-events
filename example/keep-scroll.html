@@ -8,6 +8,7 @@
 	<style>
 		body { padding-top: 50px; }
 		.starter-template { padding: 40px 15px; text-align: center; }
+		.jazz li { margin-bottom: 50px; }
 	</style>
 </head>
 <body>
@@ -27,47 +28,28 @@
 	<div class="container">
 
 		<h1>Keep Scroll example</h1>
-		<p class="lead">The <code>grrr-keep-scroll</code> directive is used to preserve scroll position when navigating around an Angular app.</p>
+		<p class="lead">The <code>keep-scroll</code> directive is used to preserve scroll position when navigating around an Angular app.</p>
 		<p>Ever clicked a link half-way a very long list, only to find you had to scroll all the way down again when navigating back? This directive fixes this problem by storing the scroll position in <code>window</code> and responding to the <code>$routeChangeStart</code> event.</p>
-		<p>Try it below:</p>
 
-		<div ng-app="testKeepScroll">
-			<div ng-view></div>
+		<h2>Usage</h2>
+		<pre>
+&lt;div keep-scroll="myIdentifier"&gt;&lt;/div&gt; </pre>
 
-			<script type="text/ng-template" id="listTemplate">
-				<h2>Great jazz albums</h2>
-				<ul>
-					<li ng-repeat="album in albums"><a href="sample.html">{{ album.artist }} - {{ album.name }}</a></li>
-				</ul>
-			</script>
-		</div>
+		<p><code>myIdentifier</code> will be used to store the element's scroll position in <code>window</code>. Whenever the <code>$routeChangeStart</code> event fires the scroll position is corrected.</p>
 
-	</div><!-- /.container -->
+		<h3>Waiting for content</h3>
+		<p>When working with asynchronous data, the directive will often be applied too fast, before the data is rendered, and your page is not yet high enough for this to make sense.</p>
+		<p>In those cases, use the <code>wait-for-event</code> attribute, and emit an event from your controller whenever you're done:</p>
+		<pre>
+&lt;div keep-scroll="&lt;identifier" wait-for-event="contentLoaded"&gt;&lt;/div&gt;
 
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-	<script src="../dist/grrr-scroll.min.js"></script>
-	<script>
-		angular.module('testKeepScroll', ['ngRoute', 'grrrScroll'])
-		.config(function($routeProvider) {
-			$routeProvider
-			.when('/keep-scroll.html', {
-				template: 'listTemplate',
-				controller: 'IndexCtrl'
-			});
-		})
-		.controller('IndexCtrl', function($scope) {
-			$scope.albums = [
-				{ artist: "Charles Mingus", name: "The Black Saint And The Sinner Lady" },
-				{ artist: "Miles Davis", name: "Bitches Brew" },
-				{ artist: "Herbie Hancock", name: "Head Hunters" },
-				{ artist: "Art Blakey And The Jazz Messengers", name: "The Big Beat" },
-				{ artist: "John Coltrane", name: "A Love Supreme" },
-				{ artist: "Sun Ra", name: "Atlantis" },
-				{ artist: "Weather Report", name: "I Sing The Body Electric" },
-				{ artist: "Thelonious Monk", name: "Brilliant Corners" }
-			];
-		});
-	</script>
+// from your controller
+$scope.$emit('contentLoaded');
+		</pre>
+
+		<h2>Live demo</h2>
+
+		<p><a href="keep-scroll-demo.html">View a demo containing all of the above elements.</a></p>
+	</div>
 </body>
 </html>
