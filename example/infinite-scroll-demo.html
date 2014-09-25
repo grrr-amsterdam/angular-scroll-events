@@ -15,8 +15,8 @@
 		<div class="container">
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="keep-scroll.html">Keep Scroll</a></li>
-					<li><a href="infinite-scroll.html">Infinite Scroll</a></li>
+					<li><a href="keep-scroll.html">Keep Scroll</a></li>
+					<li class="active"><a href="infinite-scroll.html">Infinite Scroll</a></li>
 					<li><a href="scroll-service.html">Scroll service</a></li>
 					<li><a href="https://github.com/Grrr-Amsterdam/angular-scroll-events">
 						View on Github</a></li>
@@ -33,14 +33,9 @@
 			<script type="text/ng-template" id="listTemplate">
 				<h2>Countries of the world</h2>
 				<p ng-show="loading"><i>loading...</i></p>
-				<ul keep-scroll="countries" wait-for-event="listLoaded">
-					<li ng-repeat="country in countries"><a ng-href="#!single">{{ country.name.common }}</a></li>
+				<ul infinite-scroll="increaseLimit" scroll-threshold="700" wait-for-event="listLoaded">
+					<li ng-repeat="country in countries | limitTo:maxItems">{{ country.name.common }}</li>
 				</ul>
-			</script>
-			<script type="text/ng-template" id="singleTemplate">
-				<h1>Viewing single item</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<a ng-href="#!list">Back to list</a>
 			</script>
 		</div>
 
@@ -49,7 +44,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 	<script src="countries.js"></script>
-	<script src="../dist/grrr-scroll.min.js"></script>
+	<script src="../dist/grrr-scroll.js"></script>
 	<script>
 		angular.module('testKeepScroll', ['ngRoute', 'grrrScroll'])
 		.config(function($locationProvider) {
@@ -58,12 +53,6 @@
 		})
 		.config(function($routeProvider) {
 			$routeProvider
-			.when('/single', {
-				controller: 'SingleCtrl',
-				template: function() {
-					return document.getElementById('singleTemplate').innerHTML;
-				}
-			})
 			.otherwise({
 				controller: 'IndexCtrl',
 				template: function() {
@@ -74,13 +63,16 @@
 		.controller('IndexCtrl', function($scope, $timeout) {
 			// Use $timeout to fake HTTP request
 			$scope.loading = true;
+			$scope.maxItems = 50;
 			$timeout(function() {
 				$scope.countries = window.countries;
 				$scope.loading = false;
 				$scope.$emit('listLoaded');
 			}, 1000);
-		})
-		.controller('SingleCtrl', function($scope) {
+
+			$scope.increaseLimit = function() {
+				$scope.maxItems += 50;
+			};
 		});
 	</script>
 </body>

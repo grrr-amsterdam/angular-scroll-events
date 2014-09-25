@@ -1,5 +1,7 @@
 /**
  * Save scroll position when navigating away and reapply when navigating back.
+ * @author Harmen Janssen <harmen@grrr.nl>
+ * @author Larix Kortbeek <larixk@gmail.com>
  */
 angular.module('grrrScroll')
 .directive('keepScroll', function($timeout, $window, $document) {

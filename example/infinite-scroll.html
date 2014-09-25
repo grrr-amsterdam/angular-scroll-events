@@ -18,6 +18,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="keep-scroll.html">Keep Scroll</a></li>
 					<li class="active"><a href="infinite-scroll.html">Infinite Scroll</a></li>
+					<li><a href="scroll-service.html">Scroll service</a></li>
 					<li><a href="https://github.com/Grrr-Amsterdam/angular-scroll-events">
 						View on Github</a></li>
 				</ul>
@@ -29,7 +30,28 @@
 
 		<h1>Infinite Scroll</h1>
 
-		<p>Coming soon</p>
+		<p>We all know what infinite scroll means. This directive does it.</p>
+
+		<h2>Usage</h2>
+
+		<pre>
+&lt;div infinite-scroll="myHandlerFunction"
+    scroll-threshold="700"&gt;&lt;/div&gt;</pre>
+
+		<p><code>scroll-threshold</code> is optional, and defaults to 200.</p>
+
+		<h3>Waiting for content</h3>
+		<p>When working with asynchronous data, the directive will often be applied too fast, before the data is rendered, and the various height calculations and whatnot will be off.</p>
+		<p>In those cases, use the <code>wait-for-event</code> attribute, and emit an event from your controller whenever you're done:</p>
+		<pre>
+&lt;div infinite-scroll="myHandlerFunction" wait-for-event="contentLoaded"&gt;&lt;/div&gt;
+
+// from your controller
+$scope.$emit('contentLoaded');</pre>
+
+		<h2>Live demo</h2>
+		<p><a href="infinite-scroll-demo.html">View a demo containing all of the above elements.</a></p>
+		
 	</div>
 </body>
 </html>

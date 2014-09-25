@@ -18,6 +18,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="keep-scroll.html">Keep Scroll</a></li>
 					<li><a href="infinite-scroll.html">Infinite Scroll</a></li>
+					<li><a href="scroll-service.html">Scroll service</a></li>
 					<li><a href="https://github.com/Grrr-Amsterdam/angular-scroll-events">
 						View on Github</a></li>
 				</ul>
@@ -41,14 +42,12 @@
 		<p>When working with asynchronous data, the directive will often be applied too fast, before the data is rendered, and your page is not yet high enough for this to make sense.</p>
 		<p>In those cases, use the <code>wait-for-event</code> attribute, and emit an event from your controller whenever you're done:</p>
 		<pre>
-&lt;div keep-scroll="&lt;identifier" wait-for-event="contentLoaded"&gt;&lt;/div&gt;
+&lt;div keep-scroll="myIdentifier" wait-for-event="contentLoaded"&gt;&lt;/div&gt;
 
 // from your controller
-$scope.$emit('contentLoaded');
-		</pre>
+$scope.$emit('contentLoaded');</pre>
 
 		<h2>Live demo</h2>
-
 		<p><a href="keep-scroll-demo.html">View a demo containing all of the above elements.</a></p>
 	</div>
 </body>

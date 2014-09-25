@@ -1,5 +1,7 @@
 /**
  * Main module
  */
-'use strict';
-angular.module('grrrScroll', []);
+(function() {
+	'use strict';
+	angular.module('grrrScroll', []);
+})();
