@@ -33,7 +33,7 @@
 			<script type="text/ng-template" id="listTemplate">
 				<h2>Countries of the world</h2>
 				<p ng-show="loading"><i>loading...</i></p>
-				<ul keep-scroll="countries" wait-for-event="listLoaded">
+				<ul keep-scroll="countryList" wait-for-event="listLoaded">
 					<li ng-repeat="country in countries"><a ng-href="#!single">{{ country.name.common }}</a></li>
 				</ul>
 			</script>

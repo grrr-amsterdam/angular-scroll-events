@@ -26,8 +26,10 @@ angular.module('grrrScroll')
 	return function(scope, element, attrs) {
 		// Call after everything is rendered
 		if (attrs.waitForEvent) {
-			scope.$on(attrs.waitForEvent, function() {
+			var unsubscriber = scope.$on(attrs.waitForEvent, function() {
 				onLoad(attrs.keepScroll);
+				// Take care to respond to the event only once
+				unsubscriber();
 			});
 		// Or immediately
 		} else {

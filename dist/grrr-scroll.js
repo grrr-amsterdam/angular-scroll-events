@@ -75,14 +75,22 @@ angular.module('grrrScroll')
 
 			// Detach when switching controllers
 			var thisController = $route.current.controller;
-			scope.$on("$routeChangeStart", function(e, current, prev) {
-				if (current.controller !== thisController) {
+			var routeChanged = function(currentController) {
+				if (currentController !== thisController) {
 					Scroll.detach(scrollServiceId, scrollListener);
-				} else {
-					kickstart();
+					return;
 				}
+				$timeout(function() {
+					kickstart();
+				});
+			};
+
+			scope.$on("$routeChangeStart", function(e, current, prev) {
+				routeChanged(current.controller);
 			});
-			
+			scope.$on('$routeChangeSuccess', function(e, current, prev) {
+				routeChanged(current.controller);
+			});
 
 			if (attrs.waitForEvent) {
 				scope.$on(attrs.waitForEvent, function() {
@@ -91,7 +99,9 @@ angular.module('grrrScroll')
 					});
 				});
 			} else {
-				kickstart();
+				$timeout(function() {
+					kickstart();
+				});
 			}
 		}
 	};
@@ -125,8 +135,10 @@ angular.module('grrrScroll')
 	return function(scope, element, attrs) {
 		// Call after everything is rendered
 		if (attrs.waitForEvent) {
-			scope.$on(attrs.waitForEvent, function() {
+			var unsubscriber = scope.$on(attrs.waitForEvent, function() {
 				onLoad(attrs.keepScroll);
+				// Take care to respond to the event only once
+				unsubscriber();
 			});
 		// Or immediately
 		} else {
