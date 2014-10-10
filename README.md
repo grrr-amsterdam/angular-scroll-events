@@ -21,6 +21,10 @@ position. After navigating away from the page, the scroll position will be store
 
 Check out the example files for more info.
 
+### Infinite scroll
+
+The usual. You guys know what infinite scroll means.
+
 ## To do
 
 - Make example files viewable on Github
