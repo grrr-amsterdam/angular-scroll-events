@@ -1,5 +1,7 @@
 # Angular Scroll Events
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/grrr-amsterdam/angular-scroll-events.svg)](https://greenkeeper.io/)
+
 A collection of Angular directives that act on various scroll events.
 
 Grab the minified distribution, link it in your project and make `grrrScroll` a dependency in your
